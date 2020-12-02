@@ -2,7 +2,9 @@
 
 exports[`flatOptions 1`] = `
 Object {
-  "//registry.npmjs.org/:_authToken": Any<String>,
+  "//lerna-test.npme.io/:_authToken": "beefcafe",
+  "//registry.npmjs.org/:_authToken": "deadbeef",
+  "@lerna-test:registry": "https://lerna-test.npme.io/",
   "_auth": null,
   "access": null,
   "all": false,

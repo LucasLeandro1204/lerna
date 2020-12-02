@@ -15,6 +15,7 @@ Object.defineProperty(process, "platform", {
   writable: true,
 });
 
+const npmrcFixturePath = path.resolve(__dirname, "__fixtures__/npmrc");
 const originalPlatform = process.platform;
 const originalStdoutTTY = process.stdout.isTTY;
 
@@ -50,6 +51,9 @@ beforeEach(() => {
 
   delete process.env.LOCALAPPDATA;
   delete process.env.NODE;
+
+  // _except_ userconfig, which we use to divorce tests from private user-global state
+  process.env.npm_config_userconfig = npmrcFixturePath;
 });
 
 /* eslint-disable global-require */
@@ -69,7 +73,6 @@ test("flatOptions", async () => {
 
   expect(conf.flatOptions).toMatchSnapshot({
     // normalize platform- and user-specific fields
-    "//registry.npmjs.org/:_authToken": expect.any(String),
     cache: expect.any(String),
     dmode: expect.any(Number),
     fmode: expect.any(Number),

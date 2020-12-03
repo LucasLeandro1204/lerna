@@ -148,7 +148,7 @@ test("custom env (windows)", async () => {
   await conf.load();
   const opts = conf.flatOptions;
 
-  expect(opts.cache).toBe(path.join("/local-app-data/npm-cache", "_cacache"));
+  expect(opts.cache).toContain(path.join("/local-app-data/npm-cache", "_cacache"));
   expect(opts.editor).toBe("windows-editor");
   expect(opts.shell).toBe("i-am-comspec");
   expect(opts.unicode).toBe(false);
